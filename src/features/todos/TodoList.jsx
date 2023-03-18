@@ -12,6 +12,12 @@ import {
   todosUrlEndpoint as cacheKey,
 } from '../../api/todosApi';
 
+import {
+  addTodoOptions,
+  updateTodoOptions,
+  deleteTodoOptions,
+} from '../../helpers/todosMutation';
+
 const TodoList = () => {
   const [newTodo, setNewTodo] = useState('');
 
@@ -26,8 +32,9 @@ const TodoList = () => {
 
   const addTodoMutation = async (newTodo) => {
     try {
-      await addTodo(newTodo);
-      mutate();
+      // await addTodo(newTodo);
+      // mutate()
+      await mutate(addTodo(newTodo, todos), addTodoOptions(newTodo, todos));
 
       toast.success('Success! Added new item.', {
         duration: 1000,
@@ -42,8 +49,9 @@ const TodoList = () => {
 
   const updateTodoMutation = async (updatedTodo) => {
     try {
-      await updateTodo(updatedTodo);
-      mutate();
+      //   await updateTodo(updatedTodo);
+      //   mutate();
+      await mutate(updateTodo(updatedTodo), updateTodoOptions(updatedTodo));
 
       toast.success('Success! Updated item.', {
         duration: 1000,
@@ -58,8 +66,9 @@ const TodoList = () => {
 
   const deleteTodoMutation = async ({ id }) => {
     try {
-      await deleteTodo({ id });
-      mutate();
+      //   await deleteTodo({ id });
+      //   mutate();
+      await mutate(deleteTodo({ id }), deleteTodoOptions({ id }));
 
       toast.success('Success! Deleted item.', {
         duration: 1000,
