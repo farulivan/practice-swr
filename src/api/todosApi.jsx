@@ -17,12 +17,12 @@ export const addTodo = async ({ userId, title, completed }) => {
 }
 
 export const updateTodo = async (todo) => {
-    await delay()
+    // await delay()
     const response = await todosApi.patch(`${todosUrlEndpoint}/${todo.id}`, todo)
     return response.data
 }
 
 export const deleteTodo = async ({ id }) => {
-    await delay()
+    // await delay()
     return await todosApi.delete(`${todosUrlEndpoint}/${id}`, id)
 }
